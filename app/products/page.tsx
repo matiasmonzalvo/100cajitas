@@ -91,7 +91,7 @@ export default function ProductsPage() {
   }, [categoryParam]);
 
   return (
-    <div className="container px-4 py-8 md:px-6 md:py-12">
+    <div className="container px-4 pt-16 md:px-6 md:py-20 ">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-4">
           <h1 className="text-3xl font-bold tracking-tight">Gift Boxes</h1>

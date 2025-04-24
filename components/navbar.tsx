@@ -108,140 +108,118 @@ export default function Navbar() {
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="grid w-[600px] grid-cols-2 p-4 gap-3">
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/products"
-                      className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-                        <Package className="h-5 w-5 text-primary" />
-                      </div>
-                      <div className="space-y-1">
-                        <h3 className="text-sm font-medium">
-                          Todos los productos
-                        </h3>
-                        <p className="text-xs text-muted-foreground">
-                          Explora nuestra colección completa de cajitas
-                        </p>
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/products?category=fathers-day"
-                      className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-                        <Gift className="h-5 w-5 text-primary" />
-                      </div>
-                      <div className="space-y-1">
-                        <h3 className="text-sm font-medium">Día del padre</h3>
-                        <p className="text-xs text-muted-foreground">
-                          Regalos especiales para papá
-                        </p>
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/products?category=mothers-day"
-                      className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-                        <Heart className="h-5 w-5 text-primary" />
-                      </div>
-                      <div className="space-y-1">
-                        <h3 className="text-sm font-medium">Día de la madre</h3>
-                        <p className="text-xs text-muted-foreground">
-                          Sorprende a mamá con algo especial
-                        </p>
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/products?category=birthday"
-                      className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-                        <Cake className="h-5 w-5 text-primary" />
-                      </div>
-                      <div className="space-y-1">
-                        <h3 className="text-sm font-medium">Cumpleaños</h3>
-                        <p className="text-xs text-muted-foreground">
-                          Celebra con nuestras cajitas de regalo
-                        </p>
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/products?category=friends-day"
-                      className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-                        <Users className="h-5 w-5 text-primary" />
-                      </div>
-                      <div className="space-y-1">
-                        <h3 className="text-sm font-medium">Día del amigo</h3>
-                        <p className="text-xs text-muted-foreground">
-                          Demuestra tu amistad con un detalle único
-                        </p>
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/products?category=kids-day"
-                      className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-                        <Gift className="h-5 w-5 text-primary" />
-                      </div>
-                      <div className="space-y-1">
-                        <h3 className="text-sm font-medium">Día del niño</h3>
-                        <p className="text-xs text-muted-foreground">
-                          Cajitas especiales para los más pequeños
-                        </p>
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
+                  <Link
+                    href="/products"
+                    className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
+                      <Package className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-sm font-medium">
+                        Todos los productos
+                      </h3>
+                      <p className="text-xs text-muted-foreground">
+                        Explora nuestra colección completa de cajitas
+                      </p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/products?category=fathers-day"
+                    className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
+                      <Gift className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-sm font-medium">Día del padre</h3>
+                      <p className="text-xs text-muted-foreground">
+                        Regalos especiales para papá
+                      </p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/products?category=mothers-day"
+                    className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
+                      <Heart className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-sm font-medium">Día de la madre</h3>
+                      <p className="text-xs text-muted-foreground">
+                        Sorprende a mamá con algo especial
+                      </p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/products?category=birthday"
+                    className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
+                      <Cake className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-sm font-medium">Cumpleaños</h3>
+                      <p className="text-xs text-muted-foreground">
+                        Celebra con nuestras cajitas de regalo
+                      </p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/products?category=friends-day"
+                    className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
+                      <Users className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-sm font-medium">Día del amigo</h3>
+                      <p className="text-xs text-muted-foreground">
+                        Demuestra tu amistad con un detalle único
+                      </p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/products?category=kids-day"
+                    className="flex items-start gap-3 rounded-md p-3 hover:bg-accent"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
+                      <Gift className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-sm font-medium">Día del niño</h3>
+                      <p className="text-xs text-muted-foreground">
+                        Cajitas especiales para los más pequeños
+                      </p>
+                    </div>
+                  </Link>
                 </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/products?category=fathers-day" passHref>
-                <NavigationMenuLink className="font-medium">
-                  DÍA DEL PADRE
-                </NavigationMenuLink>
+                DÍA DEL PADRE
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/products?category=mothers-day" passHref>
-                <NavigationMenuLink className="font-medium">
-                  DÍA DE LA MADRE
-                </NavigationMenuLink>
+                DÍA DE LA MADRE
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/products?category=birthday" passHref>
-                <NavigationMenuLink className="font-medium">
-                  CUMPLEAÑOS
-                </NavigationMenuLink>
+                CUMPLEAÑOS
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/contact" passHref>
-                <NavigationMenuLink className="font-medium">
-                  CONTACTO
-                </NavigationMenuLink>
+                CONTACTO
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/shipping" passHref>
-                <NavigationMenuLink className="font-medium">
-                  ENVIOS
-                </NavigationMenuLink>
+                ENVIOS
               </Link>
             </NavigationMenuItem>
           </NavigationMenuList>

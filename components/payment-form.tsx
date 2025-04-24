@@ -22,7 +22,7 @@ import {
 
 const MERCADO_PAGO_PUBLIC_KEY =
   process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY ||
-  "TEST-12345678-abcd-efgh-ijkl-123456789012";
+  "TEST-e742ffc1-5db2-45c5-985e-1ed2ca54b926";
 
 interface PaymentFormProps {
   amount: number;

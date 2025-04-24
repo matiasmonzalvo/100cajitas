@@ -37,7 +37,7 @@ export default function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="container flex flex-col items-center justify-center min-h-[60vh] px-4 py-8 md:px-6 md:py-12">
+      <div className="container flex flex-col items-center justify-center min-h-[60vh] px-4 py-8 md:px-6 md:py-20">
         <ShoppingCart className="h-16 w-16 text-muted-foreground" />
         <h1 className="mt-6 text-2xl font-bold">Your cart is empty</h1>
         <p className="mt-2 text-center text-muted-foreground">
@@ -51,7 +51,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="container px-4 py-8 md:px-6 md:py-12">
+    <div className="container py-8 md:py-20">
       <div className="flex flex-col space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold tracking-tight">Shopping Cart</h1>
@@ -138,7 +138,11 @@ export default function CartPage() {
                   )}
                 </div>
 
-                <Button className="w-full" size="lg" onClick={handleCheckout}>
+                <Button
+                  className="w-full cursor-pointer"
+                  size="lg"
+                  onClick={handleCheckout}
+                >
                   Checkout
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

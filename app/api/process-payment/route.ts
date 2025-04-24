@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
-const ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN;
+const ACCESS_TOKEN =
+  process.env.MERCADO_PAGO_ACCESS_TOKEN ||
+  "TEST-2918243639657173-042411-844272ea566685b5bae5697ea7596188-1071562771";
 
 export async function POST(request: Request) {
   try {
