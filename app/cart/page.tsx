@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, ShoppingCart, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
   const [promoCode, setPromoCode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
+  const router = useRouter();
 
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -27,6 +29,10 @@ export default function CartPage() {
     if (promoCode.toLowerCase() === "welcome10") {
       setPromoApplied(true);
     }
+  };
+
+  const handleCheckout = () => {
+    router.push("/checkout");
   };
 
   if (cart.length === 0) {
@@ -132,7 +138,7 @@ export default function CartPage() {
                   )}
                 </div>
 
-                <Button className="w-full" size="lg">
+                <Button className="w-full" size="lg" onClick={handleCheckout}>
                   Checkout
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

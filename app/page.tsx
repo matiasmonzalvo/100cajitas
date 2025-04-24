@@ -7,46 +7,56 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ProductCard } from "@/components/product-card";
 import { featuredProducts } from "@/lib/data";
 
+const categories = [
+  { label: "Día del padre", bg: "bg-blue-200" },
+  { label: "Día de la madre", bg: "bg-pink-200" },
+  { label: "Cumpleaños", bg: "bg-yellow-200" },
+  { label: "Navidad", bg: "bg-green-200" },
+  { label: "Futbolero", bg: "bg-purple-200" },
+  { label: "Cocinero", bg: "bg-red-200" },
+];
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-muted/50 to-muted">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+      <section className="w-full py-12 md:py-24 lg:py-32 h-screen">
+        <div className="container px-4 md:px-6 h-full">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center h-full">
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                  Curated Gift Boxes for Every Occasion
+                  Cajas de regalo para cualquier ocasión
                 </h1>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  Discover the perfect gift box for your loved ones. Handcrafted
-                  with care and filled with premium items.
+                  Descubre la caja de regalo perfecta para tus seres queridos.
+                  Hechas a mano con cuidado y llenas de artículos de primera
+                  calidad.
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Link href="/products">
-                  <Button size="lg">
-                    Shop Now
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
                 <Link href="/products?category=bestsellers">
                   <Button variant="outline" size="lg">
-                    View Bestsellers
+                    Elegir tipo de caja
+                  </Button>
+                </Link>
+                <Link href="/products">
+                  <Button size="lg">
+                    Ver todos los productos
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center bg-pink-200 h-full rounded-4xl">
               <div className="relative w-full max-w-[500px] aspect-square">
-                <Image
+                {/* <Image
                   src="/box-image.png"
                   alt="Featured gift box"
                   fill
                   className="object-cover rounded-lg"
                   priority
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -54,42 +64,36 @@ export default function Home() {
       </section>
 
       {/* Categories Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="w-full py-12 md:py-10">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
-                Shop by Occasion
+                Elige la caja perfecta
               </h2>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                Find the perfect gift box for any celebration or special moment
+              <p className="text-muted-foreground md:text-xl">
+                Encuentra la caja de regalo perfecta para cualquier celebración
+                o momento especial.
               </p>
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-8">
-            {[
-              "Father's Day",
-              "Mother's Day",
-              "Birthday",
-              "Christmas",
-              "For Gamers",
-              "For Cooks",
-            ].map((category) => (
+            {categories.map(({ label, bg }) => (
               <Link
-                key={category}
-                href={`/products?category=${category
+                key={label}
+                href={`/products?category=${label
                   .toLowerCase()
                   .replace("'", "")
                   .replace(" ", "-")}`}
               >
                 <Card className="overflow-hidden transition-all hover:shadow-lg">
-                  <div className="aspect-square relative bg-muted">
+                  <div className={`aspect-square relative ${bg}`}>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <Gift className="h-12 w-12 text-muted-foreground/60" />
                     </div>
                   </div>
                   <CardContent className="p-4">
-                    <h3 className="font-medium text-center">{category}</h3>
+                    <h3 className="font-medium text-center">{label}</h3>
                   </CardContent>
                 </Card>
               </Link>
@@ -99,15 +103,15 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/30">
+      <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
-                Featured Gift Boxes
+                Cajas destacadas
               </h2>
               <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                Our most popular and loved gift boxes
+                Nuestras cajas más populares
               </p>
             </div>
           </div>
@@ -133,10 +137,10 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
-                Why Choose 100 Cajitas
+                ¿Por qué elegir 100 cajitas?
               </h2>
               <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                What makes our gift boxes special
+                Lo que hace a nuestras cajas especiales
               </p>
             </div>
           </div>
@@ -183,31 +187,6 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
-                Stay Updated
-              </h2>
-              <p className="mt-4 text-muted-foreground md:text-xl">
-                Subscribe to our newsletter for exclusive offers, new gift box
-                releases, and gifting inspiration.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              />
-              <Button>Subscribe</Button>
-            </div>
           </div>
         </div>
       </section>
