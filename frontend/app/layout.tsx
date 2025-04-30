@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex min-h-screen flex-col items-center">
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="w-full container mx-auto px-4">{children}</main>
           <footer className="w-full container">
             <div className="container px-4 pb-12 md:px-6 lg:pb-16">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 pt-12 md:grid-cols-4 border-t">

@@ -198,29 +198,25 @@ export default function Navbar() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/products?category=fathers-day" passHref>
+              <NavigationMenuLink href="/products?category=fathers-day">
                 DÍA DEL PADRE
-              </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/products?category=mothers-day" passHref>
+              <NavigationMenuLink href="/products?category=mothers-day">
                 DÍA DE LA MADRE
-              </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/products?category=birthday" passHref>
+              <NavigationMenuLink href="/products?category=birthday">
                 CUMPLEAÑOS
-              </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/contact" passHref>
-                CONTACTO
-              </Link>
+              <NavigationMenuLink href="/contact">CONTACTO</NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/shipping" passHref>
-                ENVIOS
-              </Link>
+              <NavigationMenuLink href="/shipping">ENVIOS</NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

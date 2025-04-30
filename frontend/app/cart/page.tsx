@@ -48,18 +48,22 @@ export default function CartPage() {
   }
 
   return (
-    <div className="container py-8 md:py-20">
-      <div className="flex flex-col space-y-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold tracking-tight">Shopping Cart</h1>
-          <Button variant="ghost" size="sm" onClick={clearCart}>
-            <Trash2 className="mr-2 h-4 w-4" />
-            Clear Cart
-          </Button>
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-12">
-          <div className="md:col-span-7 lg:col-span-8">
+    <div className="w-full container flex py-8 md:py-20">
+      <div className="w-full flex flex-col space-y-6">
+        <div className="w-full flex justify-between gap-8">
+          <div className="md:col-span-7 lg:col-span-8 relative w-full">
+            <div className="flex items-center justify-between mb-6">
+              <h1 className="text-3xl font-bold tracking-tight">
+                Shopping Cart
+              </h1>
+              <button
+                onClick={clearCart}
+                className="px-0 flex items-center text-sm cursor-pointer"
+              >
+                <Trash2 className="mr-2 h-4 w-4 -mt-[1.5px]" />
+                Vaciar carrito
+              </button>
+            </div>
             <div className="space-y-4">
               {cart.map((item) => (
                 <CartItem
@@ -75,13 +79,13 @@ export default function CartPage() {
               <Button variant="outline" size="sm" asChild>
                 <Link href="/products">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Continue Shopping
+                  Continuar comprando
                 </Link>
               </Button>
             </div>
           </div>
 
-          <div className="md:col-span-5 lg:col-span-4">
+          <div className="md:col-span-5 lg:col-span-4 relative w-1/2">
             <div className="rounded-lg border bg-card p-6">
               <h2 className="text-xl font-semibold">Order Summary</h2>
 
