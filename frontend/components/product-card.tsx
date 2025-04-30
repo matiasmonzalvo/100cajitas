@@ -18,11 +18,8 @@ interface ProductCardProps {
     description: string;
     price: number;
     compareAtPrice?: number;
-    image?: string;
-    rating: number;
-    reviewCount: number;
+    image?: string[];
     isNew?: boolean;
-    isBestseller?: boolean;
     isOnSale?: boolean;
     categories: string[];
     occasions: string[];
