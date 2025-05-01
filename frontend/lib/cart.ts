@@ -3,6 +3,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+interface ItemCustomization {
+  itemId: string;
+  options: Record<string, string>;
+}
+
 interface CartItem {
   id: string;
   name: string;
@@ -10,6 +15,7 @@ interface CartItem {
   image?: string;
   quantity: number;
   selectedOption?: string | null;
+  customizations?: ItemCustomization[];
 }
 
 interface CartStore {
@@ -18,9 +24,14 @@ interface CartStore {
   updateQuantity: (
     id: string,
     quantity: number,
-    option?: string | null
+    option?: string | null,
+    customizations?: ItemCustomization[]
   ) => void;
-  removeFromCart: (id: string, option?: string | null) => void;
+  removeFromCart: (
+    id: string,
+    option?: string | null,
+    customizations?: ItemCustomization[]
+  ) => void;
   clearCart: () => void;
 }
 
@@ -31,11 +42,30 @@ export const useCartStore = create<CartStore>()(
 
       addToCart: (item) =>
         set((state) => {
-          const existingItemIndex = state.cart.findIndex(
-            (cartItem) =>
+          // Create a unique identifier based on product ID, option, and customizations
+          const customizationsKey = item.customizations
+            ? JSON.stringify(
+                item.customizations.sort((a, b) =>
+                  a.itemId.localeCompare(b.itemId)
+                )
+              )
+            : "";
+
+          const existingItemIndex = state.cart.findIndex((cartItem) => {
+            const cartCustomizationsKey = cartItem.customizations
+              ? JSON.stringify(
+                  cartItem.customizations.sort((a, b) =>
+                    a.itemId.localeCompare(b.itemId)
+                  )
+                )
+              : "";
+
+            return (
               cartItem.id === item.id &&
-              cartItem.selectedOption === item.selectedOption
-          );
+              cartItem.selectedOption === item.selectedOption &&
+              cartCustomizationsKey === customizationsKey
+            );
+          });
 
           if (existingItemIndex !== -1) {
             // Item already exists, update quantity
@@ -48,10 +78,28 @@ export const useCartStore = create<CartStore>()(
           }
         }),
 
-      updateQuantity: (id, quantity, option) =>
+      updateQuantity: (id, quantity, option, customizations) =>
         set((state) => {
+          const customizationsKey = customizations
+            ? JSON.stringify(
+                customizations.sort((a, b) => a.itemId.localeCompare(b.itemId))
+              )
+            : "";
+
           const updatedCart = state.cart.map((item) => {
-            if (item.id === id && item.selectedOption === option) {
+            const itemCustomizationsKey = item.customizations
+              ? JSON.stringify(
+                  item.customizations.sort((a, b) =>
+                    a.itemId.localeCompare(b.itemId)
+                  )
+                )
+              : "";
+
+            if (
+              item.id === id &&
+              item.selectedOption === option &&
+              itemCustomizationsKey === customizationsKey
+            ) {
               return { ...item, quantity };
             }
             return item;
@@ -59,11 +107,29 @@ export const useCartStore = create<CartStore>()(
           return { cart: updatedCart };
         }),
 
-      removeFromCart: (id, option) =>
+      removeFromCart: (id, option, customizations) =>
         set((state) => {
-          const updatedCart = state.cart.filter(
-            (item) => !(item.id === id && item.selectedOption === option)
-          );
+          const customizationsKey = customizations
+            ? JSON.stringify(
+                customizations.sort((a, b) => a.itemId.localeCompare(b.itemId))
+              )
+            : "";
+
+          const updatedCart = state.cart.filter((item) => {
+            const itemCustomizationsKey = item.customizations
+              ? JSON.stringify(
+                  item.customizations.sort((a, b) =>
+                    a.itemId.localeCompare(b.itemId)
+                  )
+                )
+              : "";
+
+            return !(
+              item.id === id &&
+              item.selectedOption === option &&
+              itemCustomizationsKey === customizationsKey
+            );
+          });
           return { cart: updatedCart };
         }),
 
@@ -85,3 +151,5 @@ export const useCart = () => {
     clearCart: store.clearCart,
   };
 };
+
+export type { ItemCustomization, CartItem };

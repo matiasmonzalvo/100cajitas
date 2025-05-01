@@ -18,7 +18,7 @@ interface ProductCardProps {
     description: string;
     price: number;
     compareAtPrice?: number;
-    image?: string[];
+    coverImage?: string;
     isNew?: boolean;
     isOnSale?: boolean;
     categories: string[];
@@ -43,7 +43,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <Link href={`/products/${product.id}`}>
         <div className="relative aspect-square overflow-hidden bg-muted">
           <Image
-            src={product.image || "/placeholder.svg?height=400&width=400"}
+            src={product.coverImage || "/placeholder.svg?height=400&width=400"}
             alt={product.name}
             fill
             className="object-cover transition-transform hover:scale-105"
@@ -51,11 +51,6 @@ export function ProductCard({ product }: ProductCardProps) {
           <div className="absolute top-2 left-2 flex flex-col gap-1">
             {product.isNew && (
               <Badge className="bg-green-600 hover:bg-green-700">New</Badge>
-            )}
-            {product.isBestseller && (
-              <Badge className="bg-amber-600 hover:bg-amber-700">
-                Bestseller
-              </Badge>
             )}
             {product.isOnSale && (
               <Badge className="bg-rose-600 hover:bg-rose-700">Sale</Badge>
@@ -72,23 +67,6 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
         <CardContent className="p-4">
           <h3 className="font-medium line-clamp-1">{product.name}</h3>
-          <div className="mt-1 flex items-center">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`h-4 w-4 ${
-                    i < product.rating
-                      ? "fill-primary text-primary"
-                      : "fill-muted text-muted"
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="ml-1 text-xs text-muted-foreground">
-              ({product.reviewCount})
-            </span>
-          </div>
           <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
             {product.description}
           </p>

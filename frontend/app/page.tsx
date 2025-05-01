@@ -5,7 +5,6 @@ import { ArrowRight, Gift, Package, Star, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ProductCard } from "@/components/product-card";
-import { featuredProducts } from "@/lib/data";
 
 const categories = [
   { label: "Día del padre", bg: "bg-blue-200" },
@@ -115,11 +114,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8"></div>
           <div className="flex justify-center mt-10">
             <Link href="/products">
               <Button size="lg" variant="outline">

@@ -65,12 +65,6 @@ export default function ProductsPage() {
       case "price-high":
         result.sort((a, b) => b.price - a.price);
         break;
-      case "newest":
-        result.sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-        break;
       case "bestselling":
         result.sort((a, b) => b.soldCount - a.soldCount);
         break;

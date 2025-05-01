@@ -6,6 +6,8 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { ItemCustomization } from "@/lib/cart";
+import { products } from "@/lib/data";
 
 interface CartItemProps {
   item: {
@@ -15,13 +17,19 @@ interface CartItemProps {
     image?: string;
     quantity: number;
     selectedOption?: string | null;
+    customizations?: ItemCustomization[];
   };
   updateQuantity: (
     id: string,
     quantity: number,
-    option?: string | null
+    option?: string | null,
+    customizations?: ItemCustomization[]
   ) => void;
-  removeFromCart: (id: string, option?: string | null) => void;
+  removeFromCart: (
+    id: string,
+    option?: string | null,
+    customizations?: ItemCustomization[]
+  ) => void;
 }
 
 export function CartItem({
@@ -31,17 +39,72 @@ export function CartItem({
 }: CartItemProps) {
   const decreaseQuantity = () => {
     if (item.quantity > 1) {
-      updateQuantity(item.id, item.quantity - 1, item.selectedOption);
+      updateQuantity(
+        item.id,
+        item.quantity - 1,
+        item.selectedOption,
+        item.customizations
+      );
     }
   };
 
   const increaseQuantity = () => {
-    updateQuantity(item.id, item.quantity + 1, item.selectedOption);
+    updateQuantity(
+      item.id,
+      item.quantity + 1,
+      item.selectedOption,
+      item.customizations
+    );
   };
 
   const handleRemove = () => {
-    removeFromCart(item.id, item.selectedOption);
+    removeFromCart(item.id, item.selectedOption, item.customizations);
   };
+
+  // Helper function to get readable customization details
+  const getCustomizationDetails = () => {
+    if (!item.customizations || item.customizations.length === 0) return null;
+
+    const product = products.find((p) => p.id === item.id);
+    if (!product) return null;
+
+    return item.customizations
+      .map((customization) => {
+        const productItem = product.items?.find(
+          (i) => i.id === customization.itemId
+        );
+        if (!productItem || !productItem.options) return null;
+
+        const optionDetails = Object.entries(customization.options)
+          .map(([optionKey, optionValue]) => {
+            if (!optionValue || !(optionKey in productItem.options))
+              return null;
+
+            const option =
+              productItem.options[
+                optionKey as keyof typeof productItem.options
+              ];
+
+            const value = option?.values.find((v) => v.id === optionValue);
+
+            if (!value) return null;
+
+            return {
+              label: option?.label,
+              value: value.name,
+            };
+          })
+          .filter(Boolean);
+
+        return {
+          itemName: productItem.name,
+          options: optionDetails,
+        };
+      })
+      .filter(Boolean);
+  };
+
+  const customizationDetails = getCustomizationDetails();
 
   return (
     <div className="space-y-3">
@@ -71,9 +134,33 @@ export function CartItem({
           </p>
           {item.selectedOption && (
             <p className="text-sm text-muted-foreground">
-              Option: {item.selectedOption}
+              Opción: {item.selectedOption}
             </p>
           )}
+
+          {customizationDetails && customizationDetails.length > 0 && (
+            <div className="mt-1">
+              {customizationDetails.map((detail, index) => (
+                <div
+                  key={index}
+                  className="text-xs bg-muted/30 p-1 rounded mt-1"
+                >
+                  <p className="font-medium text-xs">{detail?.itemName}</p>
+                  <div className="grid grid-cols-2 gap-x-2 text-muted-foreground">
+                    {detail?.options.map((option, optIdx) => (
+                      <div key={optIdx} className="text-xs flex items-center">
+                        <span className="text-xs">{option?.label}:</span>
+                        <span className="text-xs ml-1 font-medium">
+                          {option?.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           <div className="mt-2 flex items-center gap-2">
             <div className="flex items-center">
               <Button
